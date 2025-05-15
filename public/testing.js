@@ -1,7 +1,8 @@
-const id = window.sessionStorage.getItem("id");
+const user = JSON.parse(window.sessionStorage.getItem("user"));
 
 
 const h2 = document.querySelector('h2');
+h2.innerHTML = 'Добрый день, ' + user.name + '!';
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
@@ -30,10 +31,10 @@ function loadQuestions() {
 
 function updateResult(resultCount) {
     const newData = {
-        "id": id,
+        "id": user.id,
         "result": resultCount
     }
-    
+
     fetch('/updateResult', {
         method: "POST",
         headers: {

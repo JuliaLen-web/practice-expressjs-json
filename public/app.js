@@ -21,7 +21,7 @@ function serializeForm(formNode) {
     })
         .then((response) => {
             if(response.ok) {
-                window.sessionStorage.setItem("id", data[0].id);
+                window.sessionStorage.setItem("user", JSON.stringify(data[0]));
             }
             return new Response(`Received JSON: ${data[0]}`, {
                 status: 200,
