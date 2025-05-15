@@ -9,3 +9,9 @@ body {
     gap: 8px;
     min-height: 100svh;
 }
+
+fieldset {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}

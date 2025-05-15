@@ -34,8 +34,7 @@ function serializeForm(formNode) {
 }
 
 
-function handleFormSubmit(event) {
-    // event.preventDefault()
+function handleFormSubmit() {
     serializeForm(applicantForm);
 }
 

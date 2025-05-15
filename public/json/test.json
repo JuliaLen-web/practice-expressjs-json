@@ -1,24 +1,69 @@
 {
     "name": "Тест на тревожность",
     "questions": [
-        "Ощущение онемения или покалывания в теле",
-        "Чувство жара",
-        "Дрожь в ногах",
-        "Неспособность расслабиться"
-    ],
-    "answers": [
         {
-            "name": "Часто",
-            "weight": 2
+            "question": "Ощущение онемения или покалывания в теле",
+            "choice0": {
+                "name": "Часто",
+                "weight": 2
+            },
+            "choice1": {
+                "name": "Редко",
+                "weight": 1
+            },
+            "choice2": {
+                "name": "Никогда",
+                "weight": 0
+            }
+            
         },
         {
-            "name": "Редко",
-            "weight": 1
+            "question": "Чувство жара",
+            "choice0": {
+                "name": "Часто",
+                "weight": 2
+            },
+            "choice1": {
+                "name": "Редко",
+                "weight": 1
+            },
+            "choice2": {
+                "name": "Никогда",
+                "weight": 0
+            }
+            
         },
         {
-            "name": "Никогда",
-            "weight": 0
-        }
+            "question": "Дрожь в ногах",
+            "choice0": {
+                "name": "Часто",
+                "weight": 2
+            },
+            "choice1": {
+                "name": "Редко",
+                "weight": 1
+            },
+            "choice2": {
+                "name": "Никогда",
+                "weight": 0
+            }
+            
+        },
+        {
+            "question": "Неспособность расслабиться",
+            "choice0": {
+                "name": "Часто",
+                "weight": 2
+            },
+            "choice1": {
+                "name": "Редко",
+                "weight": 1
+            },
+            "choice2": {
+                "name": "Никогда",
+                "weight": 0
+            }   
+        }        
     ],
     "result": [
         {

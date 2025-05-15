@@ -17,6 +17,16 @@
     {
         "name": "hj",
         "id": "hj-1779",
-        "result": null
+        "result": 5
+    },
+    {
+        "name": "Julia",
+        "id": "Julia-8748",
+        "result": 8
+    },
+    {
+        "name": "Юлия",
+        "id": "Юлия-8113",
+        "result": 7
     }
 ]

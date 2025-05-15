@@ -1,0 +1,31 @@
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test-psy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Тест завершен! Ваш результат:</h2>
+    <h3></h3>
+
+    <p></p>
+
+    <a href="/">Пройти еще раз</a>
+
+    <script>
+        const h3 = document.querySelector('h3');
+        const p = document.querySelector('p');
+
+        const user = JSON.parse(window.sessionStorage.getItem("user"));
+        const desc = window.sessionStorage.getItem("resultDescription");
+
+        h3.innerHTML = user.result + ' баллов';
+        p.innerHTML = desc;
+
+    </script>
+</body>
+
+</html>

@@ -1,21 +1,71 @@
-const user = JSON.parse(window.sessionStorage.getItem("user"));
-
-
-const h2 = document.querySelector('h2');
-h2.innerHTML = 'Добрый день, ' + user.name + '!';
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let questions = [];
+let acceptingAnswers = false;
+
+let aboutQuestions = [];
+
+const user = JSON.parse(window.sessionStorage.getItem("user"));
+
+const h2 = document.querySelector('h2');
+h2.innerHTML = 'Добрый день, ' + user.name + '!';
+
+const question = document.querySelector('#question');
+const choices = Array.from(document.getElementsByClassName("choice-text"));
 
 function startTest() {
-    console.log(questions)
+    console.log(aboutQuestions)
+
+    const h3 = document.querySelector('h3');
+    h3.innerHTML = aboutQuestions.name;
+
+    questionCounter = 0;
+    score = 0;
+    availableQuestions = [...aboutQuestions.questions];
+    getNewQuestion();
 }
 
-function fillQuestionElements(data) {
-    console.log(h2)
+function getNewQuestion() {
+    if (availableQuestions.length === 0) {
+        updateResult(score);
+        let desc = '';
+
+        aboutQuestions.result.filter(el => {
+            if (el.min <= score && el.max >= score) desc = el.description
+        })
+
+        window.sessionStorage.setItem("resultDescription", desc)
+
+        return window.location.assign('/result.html');
+    }
+    questionCounter++;
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
+    question.innerText = currentQuestion.question;
+    choices.forEach(choice => {
+        const number = choice.getAttribute('for');
+        choice.innerHTML = `<input type="radio" id="${number}">` + currentQuestion['choice' + number].name;
+    })
+
+    availableQuestions.splice(questionIndex, 1);
+
+    acceptingAnswers = true;
 }
+
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+        e.preventDefault();
+        if (!acceptingAnswers) return;
+
+        acceptingAnswers = false;
+        const selectedChoice = e.currentTarget;
+        const number = selectedChoice.getAttribute('for');
+        score += currentQuestion['choice' + number].weight;
+        getNewQuestion();
+        console.log(score)
+    })
+})
 
 function loadQuestions() {
     fetch('/json/test.json', {
@@ -23,8 +73,7 @@ function loadQuestions() {
     })
         .then(res => res.json())
         .then(data => {
-            questions = data;
-            fillQuestionElements(data);
+            aboutQuestions = data;
             startTest();
         })
 }
@@ -44,6 +93,7 @@ function updateResult(resultCount) {
         body: JSON.stringify(newData),
     })
         .then(() => {
+            window.sessionStorage.setItem("user", JSON.stringify({ ...user, "result": resultCount }))
             return new Response(`Received JSON: ${newData}`, {
                 status: 200,
                 headers: { "Content-Type": "application/json" },
