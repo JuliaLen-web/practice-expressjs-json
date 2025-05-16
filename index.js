@@ -8,7 +8,7 @@ const app = express();
 const port = 5000;
 
 app.listen(port, () => {
-    console.log('we are listen')
+    console.log('we are listen a port')
 })
 
 app.use(express.urlencoded({ extended: false }));
